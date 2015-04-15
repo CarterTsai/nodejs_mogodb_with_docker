@@ -1,0 +1,12 @@
+node:
+    image: node:0.12.2-wheezy
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    volumes:
+        - app:/usr/src/myapp
+    working_dir: /usr/src/myapp
+    command: npm start
+mongo:
+    image: mongo:3.0.2
