@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var helmet = require('helmet'); // https://github.com/helmetjs/helmet
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -32,6 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.disable("x-powered-by");  //protection attack
+// https://speakerdeck.com/ckarande/top-overlooked-security-threats-to-node-dot-js-web-applications
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
