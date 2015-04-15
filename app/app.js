@@ -8,7 +8,15 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var mongoose = require('mongoose');
+
 var app = express();
+
+// MongoDB setup
+var databaseName = 'box';
+var mongoAddr = process.env['MONGO_PORT_27017_TCP_ADDR'];
+var mongoUri = 'mongodb://' + mongoAddr + '/' + databaseName;
+mongoose.connect(mongoUri);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
