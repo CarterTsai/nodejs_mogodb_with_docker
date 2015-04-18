@@ -20,8 +20,12 @@ var mongoUri = 'mongodb://' + mongoAddr + '/' + databaseName;
 mongoose.connect(mongoUri);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+
+// https://github.com/reactjs/express-react-views
+app.set('view engine', 'jsx');
+var options = { jsx: { harmony: true } };
+app.engine('jsx', require('express-react-views').createEngine(options));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
